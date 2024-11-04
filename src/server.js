@@ -22,7 +22,7 @@ app.use('/',webroutes)
 
 // test connection
 
-  
+  connection();
      // fields contains extra meta data about results, if available
 
 // Start server
