@@ -25,7 +25,8 @@ const getCreatePage = (req,res) => {
 }
 const getUpdatePage = async(req,res) =>{
     const userId=req.params.id;
-    let user =await getUserById(userId);
+   // let user =await getUserById(userId);
+    let user = await User.findById(userId).exec();
     res.render('edit.ejs',{userEdit:user});
 }
 const postUpdateUser = async (req, res) => {
@@ -34,9 +35,7 @@ const postUpdateUser = async (req, res) => {
         let name = req.body.myname;
         let city = req.body.city;
         let userId = req.body.userId;
-        await updateUserById(email, city, name, userId)
-        // Ensure you include userId in the query parameters
-        // res.send('Updated user successfully!');
+        await User.updateOne({_id:userId},{email:email,name:name,city:city});
         res.redirect('/');//đường link muốn người dùng tới nơi đó nếu update thành công
     } catch (error) {
         console.error('Error updating user:', error);
