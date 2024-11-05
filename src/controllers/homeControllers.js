@@ -3,9 +3,11 @@ const {getAllUsers,getUserById,updateUserById,deleteUserById}=require('../servic
 const User = require("../models/user");
 
 const getHomepage =async (req,res) => {
-    let results= [];
+    let results= await User.find({});
     return res.render('home.ejs',{listUsers:results});
-}
+}//sql orm thì sẽ dùng các câu truy vấn
+//Nosql => odm  gần với ngôn ngữ đời sống thì sẽ dùng code 
+
 const postCreateUser =async (req,res) =>{//thêm người dùng lấy dữ liệu tham số truyền vào database
     let email=req.body.email;
     let name=req.body.myname;
