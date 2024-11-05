@@ -7,6 +7,7 @@ const app = express();
 const port = process.env.PORT || 8888 ;
 const hostname = process.env.HOST_NAME ;
 const connection = require('./config/Database.js')
+const mongoose = require('mongoose')
 
 // Route
 
@@ -21,11 +22,20 @@ app.use(express.urlencoded({extended:true}))
 app.use('/',webroutes)
 
 // test connection
+// định dạng dữ liệu
 
-  connection();
+
      // fields contains extra meta data about results, if available
-
+ const startServer = async () => {
+      try {
+        await connection(); // Kết nối đến cơ sở dữ liệu
+        app.listen(port, hostname, () => {
+          console.log(`App listening at http://${hostname}:${port}`);
+        });
+      } catch (error) {
+        console.log("Error connecting to DB:", error);
+      }
+    };
+    startServer();
 // Start server
-app.listen(port,hostname, () => {
-    console.log(`App listening at http://${hostname}:${port}`);
-});
+

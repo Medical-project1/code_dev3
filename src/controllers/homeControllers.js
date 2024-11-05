@@ -1,18 +1,21 @@
 const connection=require('../config/Database')
-const {getAllUsers,getUserById,updateUserById,deleteUserById}=require('../services/CRUDservices')
+const {getAllUsers,getUserById,updateUserById,deleteUserById}=require('../services/CRUDservices');
+const User = require("../models/user");
+
 const getHomepage =async (req,res) => {
-    let results= await getAllUsers();
+    let results= [];
     return res.render('home.ejs',{listUsers:results});
 }
 const postCreateUser =async (req,res) =>{//thêm người dùng lấy dữ liệu tham số truyền vào database
     let email=req.body.email;
     let name=req.body.myname;
     let city=req.body.city;
-    console.log(' email = ',email,' name = ',name,' city = ',city)
-     let [results,fields] = await connection.query(
-        `INSERT INTO Users (email,name,city)  VALUES (?,?,?)`, [email,name,city]
-     );
-    console.log("check results= ",results);
+    console.log(' email = ',email,' name = ',name,' city = ',city);
+    await User.create({
+        email: email,
+        name:name,
+        city:city
+    })
     res.send('created user succeed!')
 }
 const getCreatePage = (req,res) => {
