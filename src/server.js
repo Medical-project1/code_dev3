@@ -3,6 +3,7 @@ const path = require('path');
 require('dotenv').config();
 const configViewEngine = require('./config/viewEngine')
 const webroutes=require('./routes/web.js')
+const apiroutes= require('./routes/api.js')
 const app = express();
 const port = process.env.PORT || 8888 ;
 const hostname = process.env.HOST_NAME ;
@@ -20,6 +21,7 @@ app.use(express.urlencoded({extended:true}))
 //lấy tham số đối tượng mới nhập để truyền vào database
 // Route for rendering EJS template
 app.use('/',webroutes)
+app.use('/v1/api/',apiroutes);
 
 // test connection
 // định dạng dữ liệu
