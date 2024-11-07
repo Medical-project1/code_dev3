@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 require('dotenv').config();
 const configViewEngine = require('./config/viewEngine')
+const fileUpload = require ('express-fileupload')
 const webroutes=require('./routes/web.js')
 const apiroutes= require('./routes/api.js')
 const app = express();
@@ -12,7 +13,7 @@ const mongoose = require('mongoose')
 
 // Route
 
-
+app.use(fileUpload());
 // Config template engine
 configViewEngine(app);
 // config req.body
