@@ -8,8 +8,8 @@ const customerSchema = new mongoose.Schema(
     address:String,
     phone:String,
     email:String,
-    image:String,
     description:String,
+    image:String,
 },
 {timestamps:true}
 )
