@@ -1,6 +1,6 @@
 
 const path = require("path")
-const uploadSinglefile = async(fileObject) =>{
+const uploadSingleFile = async(fileObject) =>{
     
     let uploadPath =path.resolve(__dirname,"../public/image/upload");
     //get image extension
@@ -63,5 +63,5 @@ const uploadMultiplefile =async (fileArr) =>{
   }
 }
 module.exports ={
-    uploadMultiplefile,uploadSinglefile
+    uploadMultiplefile,uploadSingleFile
 }
