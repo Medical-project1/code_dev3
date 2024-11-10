@@ -54,6 +54,7 @@ const postHandleRemoveUser= async (req,res) => {
     console.log("result",results);
     res.redirect('/');
 }
+
 module.exports = {
     getHomepage,postCreateUser,getCreatePage,getUpdatePage,postUpdateUser,
     updateUserById,postDeleteUser,postHandleRemoveUser,deleteUserById

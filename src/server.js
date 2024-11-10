@@ -9,6 +9,7 @@ const app = express();
 const port = process.env.PORT || 8888 ;
 const hostname = process.env.HOST_NAME ;
 const connection = require('./config/Database.js')
+const { MongoClient } = require('mongodb');
 const mongoose = require('mongoose')
 
 // Route
@@ -31,7 +32,16 @@ app.use('/v1/api/',apiroutes);
      // fields contains extra meta data about results, if available
  const startServer = async () => {
       try {
-        await connection(); // Kết nối đến cơ sở dữ liệu
+
+        await connection(); 
+        // Kết nối đến cơ sở dữ liệu
+        const url=process.env.DB_HOST_WITH_DRIVER;
+        const client = new MongoClient(url)
+        const dbName=process.env.DB_NAME
+        await client.connect();
+        console.log('connected successfully to server')
+        const db=client.db(dbName);
+        const collection=db.collection('customers');
         app.listen(port, hostname, () => {
           console.log(`App listening at http://${hostname}:${port}`);
         });
