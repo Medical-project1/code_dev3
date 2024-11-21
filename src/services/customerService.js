@@ -1,13 +1,19 @@
 const Customer = require("../models/customer");
 const aqp = require('api-query-params')
+const bcrypt=require('bcrypt');
+const saltRounds = 10;
 
 const createCustomerService = async (customerData) => {
     try {
+        // hash customer password
+        //save customer
+        const hashPassword = await bcrypt.hash(customerData.password,saltRounds)
         let result = await Customer.create({
             name: customerData.name,
             address: customerData.address,
             phone: customerData.phone,
             email: customerData.email,
+            password:hashPassword,
             description: customerData.description,
             image: customerData.image
         })

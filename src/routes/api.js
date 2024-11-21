@@ -1,18 +1,24 @@
 const express=require('express');
 const routerAPI = express.Router();
-const{getUserAPI,postCreateUserAPI,putUpdateUserAPI, deleteUserAPI, postUploadSingleFileAPI, postUploadMultipleFilesAPI} = require('../controllers/apiController')
+const{getUserAPI,handleLogin,postCreateUserAPI,putUpdateUserAPI, deleteUserAPI, postUploadSingleFileAPI, postUploadMultipleFilesAPI} = require('../controllers/apiController')
 const{postCreateCustomer,postCreateArrayCustomer,getAllCustomer,putUpdateCustomer,deleteACustomer,deleteArrayCustomer} = require('../controllers/customerController')
 const{postCreateDoctor}=require("../controllers/doctorController")
 const {postCreateProject,getAllProject,deleteProject,updateProject}=require("../controllers/projectController");
-const {postCreateTask,getAllTask,deleteTask,updateTask} = require("../controllers/taskController")
-routerAPI.post('/users',postCreateUserAPI)
+const {postCreateTask,getAllTask,deleteTask,updateTask} = require("../controllers/taskController");
+const auth = require('../middleware/auth');
+routerAPI.get("/",(req,res) =>{
+    return res.status(200).json("helooo")
+})
+
+routerAPI.all('*',auth)
+routerAPI.post('/register',postCreateUserAPI)
+routerAPI.post('/login',handleLogin)
 routerAPI.get('/users',getUserAPI)
 routerAPI.put('/users',putUpdateUserAPI)
 routerAPI.delete('/users',deleteUserAPI)
 routerAPI.post('/file',postUploadSingleFileAPI)
 routerAPI.post('/files',postUploadMultipleFilesAPI)
 //customer
-routerAPI.post('/customers',postCreateCustomer)
 routerAPI.post('/customers-many',postCreateArrayCustomer)
 routerAPI.get('/customers',getAllCustomer)
 routerAPI.put('/customers',putUpdateCustomer)

@@ -1,12 +1,20 @@
-const mongoose = require('mongoose');
-const doctorSchema = new mongoose.Schema({
+const { required } = require("joi");
+const mongoose = require("mongoose");
+const mongoose_delete = require('mongoose-delete');
+const doctorSchema = new mongoose.Schema(
+  {
     name: { type: String, required: true },
+    email: String,
+    password: { type: String, required: true },
+    phone: String,
+    gender: String,
+    roleid: String,
     specialty: { type: String, required: true },
     experience: String,
     rating: String,
-    image:String
-},
-{timestamps:true}
+  },
+  { timestamps: true }
 );
-const Doctor=mongoose.model('doctor',doctorSchema)
-module.exports=Doctor
+doctorSchema.plugin(mongoose_delete,{overrideMethods:'all'})
+const Doctor = mongoose.model("doctor", doctorSchema);
+module.exports = Doctor;

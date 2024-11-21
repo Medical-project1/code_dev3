@@ -1,7 +1,7 @@
 const express=require('express');
 const {getHomepage, postCreateUser,getCreatePage,getUpdatePage,postUpdateUser,postDeleteUser,postHandleRemoveUser}=require('../controllers/homeControllers');
 const router = express.Router();
-router.get('/', getHomepage);
+router.get('/3', getHomepage);
 router.get('/create',getCreatePage);
 router.get('/update/:id',getUpdatePage);
 router.post('/create-user',postCreateUser)
