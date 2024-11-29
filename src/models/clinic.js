@@ -4,8 +4,9 @@ const mongoose_delete = require('mongoose-delete');
 
 const clinicSchema = new mongoose.Schema(
 {
+    name:String,
     address:String,
-    description:Text,
+    description:String,
     image:String
 },
 {

@@ -4,11 +4,11 @@ const mongoose_delete = require('mongoose-delete');
 
 const bookingSchema = new mongoose.Schema(
 {
-    statusId:String,
-    doctorId:Number,
-    patientId:Number,
-    date:Date,
-    timeType:String
+  patientId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  doctorId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  date: { type: Date },
+  timeType: { type: String },
+  statusId: { type: String },
 },
 {
     timestamps:true,

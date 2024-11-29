@@ -4,7 +4,8 @@ const mongoose_delete = require('mongoose-delete');
 
 const specialtySchema = new mongoose.Schema(
 {
-   description:Text,
+   name:String,
+   description:String,
    image:String
 },
 {
