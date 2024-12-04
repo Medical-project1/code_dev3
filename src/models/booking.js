@@ -8,7 +8,7 @@ const bookingSchema = new mongoose.Schema(
   doctorId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   date: { type: Date },
   timeType: { type: String },
-  statusId: { type: String },
+  statusId: { type: String,enum:['New','Confirmed','Done','Cancel'] },
 },
 {
     timestamps:true,

@@ -1,5 +1,5 @@
 const User = require("../models/user");
-const { createUserService, loginService, getUserService,updateUserservices, deleteUserServices,refreshTokenService,uploadSingleFile,usersssService} = require("../services/userService");
+const { createUserService, loginService, getUserService,updateUserservices, deleteUserServices,refreshTokenService,uploadSingleFile} = require("../services/userService");
 const getUserAPI = async (req, res) => {
   const data =await getUserService();
   return res.status(200).json(data);
@@ -181,15 +181,6 @@ const getAllProfessors = async(req,res)=>{
     })
   }
 }
-const getusers = async(req,res)=>{
-  try {
-    const users = await usersssService();
-    return res.status(200).json(users)
-  } catch (error) {
-    res.status(500).json({
-    message:error.message
-  }
-)}}
 
 module.exports = {
   getUserAPI,
@@ -203,5 +194,4 @@ module.exports = {
   getAllPatients,
   getAllDoctors,
   getAllProfessors,
-  getusers
 };

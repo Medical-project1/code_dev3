@@ -2,26 +2,27 @@ const mongoose = require("mongoose");
 const mongoose_delete = require("mongoose-delete");
 
 const UserSchema = new mongoose.Schema(
+  { 
+    name:{ type: String, required: true, unique: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+    address: { type: String },
+    gender: { 
+      type: String, // Kiểu String cho gender
+      enum: ['Male', 'Fale', 'Other'] // Các giá trị hợp lệ cho gender
+    },
+    roleid: { type: String, enum: ['R1', 'R2', 'R3'] },
+    phoneNumber: { type: String },
+    positionId: { 
+      type: String, // Kiểu String cho position
+      enum: ['Patient', 'Doctor', 'Professor'] // Các giá trị hợp lệ cho position
+    },
+    image: { type: String }
+  },
   {
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  firstName: { type: String },
-  lastName: { type: String },
-  address: { type: String },
-  gender: { 
-    type: mongoose.Schema.Types.ObjectId, // Tham chiếu đến Allcode
-    ref: 'Allcode' // Tham chiếu đến mô hình Allcode
-  },
-  roleid: { type: String, enum: ['R1', 'R2', 'R3'] },
-  phoneNumber: { type: String },
-  position: { 
-    type: mongoose.Schema.Types.ObjectId, // Tham chiếu đến Allcode
-    ref: 'Allcode' // Tham chiếu đến mô hình Allcode
-  },
-  image: { type: String }
-}, {
-  timestamps: true,
-});
+    timestamps: true,
+  }
+);
 
 // Thao tác với db thông qua model
 UserSchema.plugin(mongoose_delete, { overrideMethods: "all" });

@@ -10,6 +10,7 @@ const scheduleSchema = new mongoose.Schema(
   timeType: { type: String },
   doctorId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   patientId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  name:{type:String}
 },
 {
     timestamps:true,

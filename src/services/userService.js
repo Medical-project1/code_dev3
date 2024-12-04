@@ -190,31 +190,7 @@ const uploadSingleFile = async(fileObject)=>{
     }
   }
 }
-const usersssService = async()=>{
-  const users = await User.find()
-  .populate("gender")
-  .populate("position");
 
-return users.map(user => ({
-  id: user._id,
-  email: user.email,
-  firstName: user.firstName,
-  lastName: user.lastName,
-  address: user.address,
-  phoneNumber: user.phoneNumber,
-  roleid: user.roleid,
-  genderData: {
-    valueEn: user.gender ? user.gender.valueEn : null,
-    valueVi: user.gender ? user.gender.valueVi : null
-  },
-  positionData: {
-    valueEn: user.position ? user.position.valueEn : null,
-    valueVi: user.position ? user.position.valueVi : null
-  },
-  createdAt: user.createdAt,
-  updatedAt: user.updatedAt,
-}));
-}
 
 module.exports = {
   createUserService,
@@ -224,5 +200,4 @@ module.exports = {
   deleteUserServices,
   refreshTokenService,
   uploadSingleFile,
-  usersssService
 };
